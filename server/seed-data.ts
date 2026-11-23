@@ -1,0 +1,26 @@
+import type { Product } from "../src/features/product/product.types";
+
+export const SEED_PRODUCTS: Product[] = [
+  { id: "p1", name: "Bananas", description: "Ripe, sweet and ready to eat. Sold by the bunch.", category: "Fruits & Veg", priceCents: 129, unit: "bunch", emoji: "🍌", hue: 50, stock: 40, rating: 4.6 },
+  { id: "p2", name: "Red Apples", description: "Crisp orchard apples, perfect for snacking.", category: "Fruits & Veg", priceCents: 349, unit: "1 lb bag", emoji: "🍎", hue: 5, stock: 30, rating: 4.7 },
+  { id: "p3", name: "Avocados", description: "Creamy Hass avocados, ripen in 2 days.", category: "Fruits & Veg", priceCents: 249, unit: "2 pack", emoji: "🥑", hue: 120, stock: 18, rating: 4.4 },
+  { id: "p4", name: "Carrots", description: "Sweet and crunchy whole carrots.", category: "Fruits & Veg", priceCents: 199, unit: "1 lb", emoji: "🥕", hue: 28, stock: 25, rating: 4.3 },
+  { id: "p5", name: "Whole Milk", description: "Fresh pasteurized whole milk.", category: "Dairy & Eggs", priceCents: 399, unit: "1 gal", emoji: "🥛", hue: 205, stock: 22, rating: 4.5 },
+  { id: "p6", name: "Free-Range Eggs", description: "Large grade A eggs from free-range hens.", category: "Dairy & Eggs", priceCents: 459, unit: "dozen", emoji: "🥚", hue: 40, stock: 35, rating: 4.8 },
+  { id: "p7", name: "Cheddar Cheese", description: "Sharp aged cheddar block.", category: "Dairy & Eggs", priceCents: 549, unit: "8 oz", emoji: "🧀", hue: 45, stock: 15, rating: 4.6 },
+  { id: "p8", name: "Salted Butter", description: "Creamy salted butter sticks.", category: "Dairy & Eggs", priceCents: 479, unit: "4 sticks", emoji: "🧈", hue: 52, stock: 20, rating: 4.7 },
+  { id: "p9", name: "Sourdough Loaf", description: "Baked this morning with a chewy crust.", category: "Bakery", priceCents: 599, unit: "loaf", emoji: "🍞", hue: 30, stock: 10, rating: 4.9 },
+  { id: "p10", name: "Butter Croissants", description: "Flaky, buttery and golden.", category: "Bakery", priceCents: 449, unit: "4 pack", emoji: "🥐", hue: 35, stock: 12, rating: 4.7 },
+  { id: "p11", name: "Chocolate Donuts", description: "Soft donuts with a rich chocolate glaze.", category: "Bakery", priceCents: 549, unit: "6 pack", emoji: "🍩", hue: 20, stock: 8, rating: 4.5 },
+  { id: "p12", name: "Potato Chips", description: "Classic salted, extra crunchy.", category: "Snacks", priceCents: 429, unit: "8 oz bag", emoji: "🥔", hue: 48, stock: 50, rating: 4.4 },
+  { id: "p13", name: "Popcorn", description: "Lightly buttered, ready to eat.", category: "Snacks", priceCents: 349, unit: "5 oz bag", emoji: "🍿", hue: 55, stock: 45, rating: 4.3 },
+  { id: "p14", name: "Dark Chocolate", description: "70% cacao, fair-trade bar.", category: "Snacks", priceCents: 399, unit: "3.5 oz", emoji: "🍫", hue: 15, stock: 28, rating: 4.8 },
+  { id: "p15", name: "Mixed Nuts", description: "Roasted almonds, cashews and pecans.", category: "Snacks", priceCents: 799, unit: "12 oz", emoji: "🥜", hue: 32, stock: 16, rating: 4.6 },
+  { id: "p16", name: "Orange Juice", description: "Cold-pressed, no added sugar.", category: "Drinks", priceCents: 549, unit: "52 fl oz", emoji: "🧃", hue: 30, stock: 20, rating: 4.5 },
+  { id: "p17", name: "Sparkling Water", description: "Lime flavored, zero calories.", category: "Drinks", priceCents: 599, unit: "12 pack", emoji: "🫧", hue: 190, stock: 33, rating: 4.4 },
+  { id: "p18", name: "Cold Brew Coffee", description: "Smooth, low-acid, ready to drink.", category: "Drinks", priceCents: 449, unit: "32 fl oz", emoji: "☕", hue: 25, stock: 14, rating: 4.7 },
+  { id: "p19", name: "Green Tea", description: "Organic green tea bags.", category: "Drinks", priceCents: 399, unit: "20 bags", emoji: "🍵", hue: 105, stock: 24, rating: 4.5 },
+  { id: "p20", name: "Paper Towels", description: "Absorbent two-ply rolls.", category: "Household", priceCents: 899, unit: "6 rolls", emoji: "🧻", hue: 215, stock: 30, rating: 4.3 },
+  { id: "p21", name: "Dish Soap", description: "Lemon scented, cuts through grease.", category: "Household", priceCents: 359, unit: "24 fl oz", emoji: "🧼", hue: 65, stock: 26, rating: 4.6 },
+  { id: "p22", name: "Trash Bags", description: "Tall kitchen bags with drawstrings.", category: "Household", priceCents: 1099, unit: "40 count", emoji: "🗑️", hue: 230, stock: 19, rating: 4.2 },
+];
