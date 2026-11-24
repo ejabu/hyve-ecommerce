@@ -1,6 +1,7 @@
 import { todayIso } from "../../lib/format";
+import { seeded } from "../../lib/seeded";
 import { flightRepo } from "./flight-repo";
-import type { Airport, Flight, FlightQuery } from "./flight.types";
+import { CABIN_ROWS, type Airport, type Cabin, type Flight, type FlightQuery } from "./flight.types";
 
 export type FlightSort = "cheapest" | "fastest" | "earliest";
 
@@ -36,6 +37,17 @@ class FlightService {
     const error = this.validate(q);
     if (error) throw new Error(error);
     return flightRepo.search(q);
+  }
+
+  /** Seats already taken on a flight (deterministic mock). */
+  takenSeats(flight: Flight, cabin: Cabin): Set<string> {
+    const rand = seeded(`seats-${flight.id}`);
+    const [first, last] = CABIN_ROWS[cabin];
+    const taken = new Set<string>();
+    for (let row = first; row <= last; row++) {
+      for (const col of "ABCDEF") if (rand() < 0.35) taken.add(`${row}${col}`);
+    }
+    return taken;
   }
 
   sort(flights: Flight[], by: FlightSort): Flight[] {

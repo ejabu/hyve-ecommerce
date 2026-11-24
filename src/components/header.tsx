@@ -14,6 +14,7 @@ export function Header() {
             Shop
           </NavLink>
           <NavLink to="/orders">Orders</NavLink>
+          <a href="/flights/">✈️ Flights</a>
           <NavLink to="/cart" className="cart-link">
             Cart
             {totals.itemCount > 0 && <span className="badge">{totals.itemCount}</span>}

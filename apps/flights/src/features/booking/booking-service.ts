@@ -27,6 +27,7 @@ class BookingService {
 
   async create(draft: Draft, summary: TripSummary, input: CreateBookingInput): Promise<Booking> {
     if (!draft.flight) throw new Error("No flight selected.");
+    if (draft.seats.length !== draft.passengers) throw new Error("Choose a seat for every passenger.");
     const error = this.validate(input);
     if (error) throw new Error(error);
 
@@ -35,7 +36,9 @@ class BookingService {
       createdAt: new Date().toISOString(),
       status: "confirmed",
       flight: draft.flight,
-      passengers: input.passengerNames.map((name) => ({ name: name.trim() })),
+      cabin: draft.cabin,
+      gate: `${"ABCDE".charAt(Math.floor(Math.random() * 5))}${1 + Math.floor(Math.random() * 28)}`,
+      passengers: input.passengerNames.map((name, i) => ({ name: name.trim(), seat: draft.seats[i] ?? "" })),
       contactEmail: input.contactEmail.trim(),
       items: summary.lines.map((l) => ({
         productId: l.product.id,

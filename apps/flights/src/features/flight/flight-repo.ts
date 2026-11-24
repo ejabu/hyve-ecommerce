@@ -1,3 +1,4 @@
+import { seeded } from "../../lib/seeded";
 import type { Airport, Flight, FlightQuery } from "./flight.types";
 
 const AIRPORTS: Airport[] = [
@@ -30,19 +31,6 @@ function distanceKm(a: Airport, b: Airport): number {
   const dLon = (b.lon - a.lon) * rad;
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLon / 2) ** 2;
   return 12742 * Math.asin(Math.sqrt(h));
-}
-
-/** Deterministic PRNG so the same search always yields the same flights. */
-function seeded(seed: string): () => number {
-  let h = 1779033703;
-  for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 3432918353);
-  let s = h >>> 0;
-  return () => {
-    s = (s + 0x6d2b79f5) >>> 0;
-    let t = Math.imul(s ^ (s >>> 15), 1 | s);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
 }
 
 class FlightRepo {

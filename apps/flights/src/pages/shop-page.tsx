@@ -4,6 +4,7 @@ import { FlightHeading } from "../components/flight-summary";
 import { QuantityStepper } from "../components/quantity-stepper";
 import { draftService } from "../features/draft/draft-service";
 import { useDraft } from "../features/draft/use-draft";
+import { CABIN_LABEL } from "../features/flight/flight.types";
 import { CATEGORY_LABELS, productService } from "../features/product/product-service";
 import type { ProductCategory } from "../features/product/product.types";
 import { useProducts } from "../features/product/use-products";
@@ -16,6 +17,7 @@ export function ShopPage() {
   const [category, setCategory] = useState<ProductCategory | "all">("all");
 
   if (!draft.flight) return <Navigate to="/" replace />;
+  if (draft.seats.length < draft.passengers) return <Navigate to="/seats" replace />;
 
   const summary = draftService.summarize(draft, products);
   const visible = category === "all" ? products : products.filter((p) => p.category === category);
@@ -62,7 +64,7 @@ export function ShopPage() {
         <FlightHeading flight={draft.flight} />
         <div className="line">
           <span>
-            Flight × {draft.passengers}
+            {CABIN_LABEL[draft.cabin]} × {draft.passengers} · {draft.seats.join(", ")}
           </span>
           <span>{money(summary.flightTotal)}</span>
         </div>

@@ -1,10 +1,13 @@
 import { z } from "zod";
-import { flightSchema } from "../flight/flight.types";
+import { cabinSchema, flightSchema } from "../flight/flight.types";
 import type { Product } from "../product/product.types";
 
 export const draftSchema = z.object({
   flight: flightSchema.nullable(),
   passengers: z.number().int().min(1).max(9),
+  cabin: cabinSchema,
+  /** One seat per passenger, in passenger order, e.g. "12A". */
+  seats: z.array(z.string()),
   /** productId -> quantity */
   items: z.record(z.string(), z.number().int().positive()),
 });

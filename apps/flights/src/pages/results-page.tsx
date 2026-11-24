@@ -21,7 +21,7 @@ export function ResultsPage() {
   function select(flight: Flight) {
     if (!query) return;
     draftService.selectFlight(flight, query.passengers);
-    navigate("/shop");
+    navigate("/seats");
   }
 
   const flights = data ? flightService.sort(data, sort) : [];

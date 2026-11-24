@@ -1,7 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import { FlightHeading, FlightTimes } from "../components/flight-summary";
 import { useBooking, useCancelBooking } from "../features/booking/use-bookings";
+import { CABIN_LABEL } from "../features/flight/flight.types";
 import { money } from "../lib/format";
+
+function boarding(departTime: string): string {
+  const [h = "0", m = "0"] = departTime.split(":");
+  const total = (Number(h) * 60 + Number(m) - 45 + 1440) % 1440;
+  return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
+}
 
 export function TripPage() {
   const { id = "" } = useParams();
@@ -30,14 +37,34 @@ export function TripPage() {
           </div>
         </div>
         <FlightTimes flight={booking.flight} />
-        <div className={`status ${booking.status}`}>{cancelled ? "Cancelled" : "Confirmed ✓"}</div>
+        <div className="row between wrap">
+          <div className={`status ${booking.status}`}>{cancelled ? "Cancelled" : "Confirmed ✓"}</div>
+          <div className="gate">
+            <span>
+              <small>Cabin</small>
+              {CABIN_LABEL[booking.cabin]}
+            </span>
+            <span>
+              <small>Gate</small>
+              {booking.gate}
+            </span>
+            <span>
+              <small>Boarding</small>
+              {boarding(booking.flight.departTime)}
+            </span>
+          </div>
+        </div>
 
         <h3>Passengers</h3>
         <ul className="plain">
           {booking.passengers.map((p, i) => (
-            <li key={i}>{p.name}</li>
+            <li key={i} className="line">
+              <span>{p.name}</span>
+              <strong>Seat {p.seat}</strong>
+            </li>
           ))}
         </ul>
+        {!cancelled && <div className="barcode" aria-hidden="true" />}
 
         {booking.items.length > 0 && (
           <>

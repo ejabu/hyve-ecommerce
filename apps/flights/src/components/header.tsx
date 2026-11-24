@@ -16,11 +16,15 @@ export function Header() {
             Flights
           </NavLink>
           {draft.flight && (
+            <NavLink to="/seats">Seats</NavLink>
+          )}
+          {draft.flight && (
             <NavLink to="/shop">
               Shop{itemCount > 0 && <span className="badge">{itemCount}</span>}
             </NavLink>
           )}
           <NavLink to="/trips">My trips</NavLink>
+          <a href="/">🛒 Corner Shop</a>
         </nav>
       </div>
     </header>

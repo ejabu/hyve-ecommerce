@@ -5,6 +5,7 @@ import { useCreateBooking } from "../features/booking/use-bookings";
 import { bookingService } from "../features/booking/booking-service";
 import { draftService } from "../features/draft/draft-service";
 import { useDraft } from "../features/draft/use-draft";
+import { CABIN_LABEL } from "../features/flight/flight.types";
 import { useProducts } from "../features/product/use-products";
 import { money } from "../lib/format";
 
@@ -18,6 +19,7 @@ export function CheckoutPage() {
   const [error, setError] = useState<string | null>(null);
 
   if (!draft.flight) return <Navigate to="/" replace />;
+  if (draft.seats.length < draft.passengers) return <Navigate to="/seats" replace />;
 
   const summary = draftService.summarize(draft, products);
 
@@ -31,8 +33,8 @@ export function CheckoutPage() {
       { draft, summary, input },
       {
         onSuccess: (booking) => {
-          draftService.clear();
           navigate(`/trips/${booking.id}`, { replace: true });
+          draftService.clear();
         },
       },
     );
@@ -64,7 +66,7 @@ export function CheckoutPage() {
         <FlightHeading flight={draft.flight} />
         <FlightTimes flight={draft.flight} />
         <div className="line">
-          <span>Flight × {draft.passengers}</span>
+          <span>{CABIN_LABEL[draft.cabin]} × {draft.passengers} · {draft.seats.join(", ")}</span>
           <span>{money(summary.flightTotal)}</span>
         </div>
         {summary.lines.map((l) => (

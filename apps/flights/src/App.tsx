@@ -3,6 +3,7 @@ import { Header } from "./components/header";
 import { CheckoutPage } from "./pages/checkout-page";
 import { ResultsPage } from "./pages/results-page";
 import { SearchPage } from "./pages/search-page";
+import { SeatsPage } from "./pages/seats-page";
 import { ShopPage } from "./pages/shop-page";
 import { TripPage } from "./pages/trip-page";
 import { TripsPage } from "./pages/trips-page";
@@ -15,6 +16,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<SearchPage />} />
           <Route path="/flights" element={<ResultsPage />} />
+          <Route path="/seats" element={<SeatsPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/trips" element={<TripsPage />} />

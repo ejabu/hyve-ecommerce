@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { bookingSchema, type Booking } from "./booking.types";
 
-const KEY = "skyline.bookings.v1";
+const KEY = "skyline.bookings.v2";
 const schema = z.array(bookingSchema);
 
 const delay = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
