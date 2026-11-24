@@ -24,6 +24,11 @@ if (env.NODE_ENV === "production") {
   // dist/server.js sits next to dist/client
   const clientDir = path.resolve(import.meta.dirname, "client");
   app.use(express.static(clientDir));
+  // Skyline Flights SPA lives under /flights
+  app.use("/flights", (req, res, next) => {
+    if (req.method !== "GET" || path.extname(req.path)) return next();
+    res.sendFile(path.join(clientDir, "flights", "index.html"));
+  });
   app.use((req, res, next) => {
     if (req.method !== "GET") return next();
     res.sendFile(path.join(clientDir, "index.html"));

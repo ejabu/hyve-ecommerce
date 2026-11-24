@@ -13,7 +13,7 @@ if (!root) throw new Error("Missing #root element");
 createRoot(root).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/flights">
         <App />
       </BrowserRouter>
     </QueryClientProvider>
